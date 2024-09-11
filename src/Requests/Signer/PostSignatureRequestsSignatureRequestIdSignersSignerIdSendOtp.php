@@ -15,9 +15,8 @@ use Saloon\Repositories\Body\JsonBodyRepository;
  * Send a One-Time Password (OTP) to a given Signer. Use this endpoint only if you use your own signing
  * flow.
  */
-class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendOtp extends Request implements HasBody
+class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendOtp extends Request
 {
-	use HasJsonBody;
 
 	protected Method $method = Method::POST;
 
@@ -35,8 +34,6 @@ class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendOtp extends Requ
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $signerId,
-        array $body = []
 	) {
-        $this->body = new JsonBodyRepository($body);
 	}
 }

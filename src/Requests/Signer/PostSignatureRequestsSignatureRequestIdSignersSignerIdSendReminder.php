@@ -16,9 +16,8 @@ use Saloon\Repositories\Body\JsonBodyRepository;
  * Only possible when the
  * Signature Request status is `ongoing` and the Signer status is `notified`.
  */
-class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendReminder extends Request implements HasBody
+class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendReminder extends Request
 {
-	use HasJsonBody;
 
 	protected Method $method = Method::POST;
 
@@ -36,8 +35,6 @@ class PostSignatureRequestsSignatureRequestIdSignersSignerIdSendReminder extends
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $signerId,
-        array $body = []
 	) {
-        $this->body = new JsonBodyRepository($body);
 	}
 }

@@ -17,9 +17,8 @@ use Saloon\Repositories\Body\JsonBodyRepository;
  * `null`, activating the Signature Request will trigger the notifications to
  * Approvers/Followers/Signers.
  */
-class PostSignatureRequestsSignatureRequestIdActivate extends Request implements HasBody
+class PostSignatureRequestsSignatureRequestIdActivate extends Request
 {
-	use HasJsonBody;
 
 	protected Method $method = Method::POST;
 
@@ -35,8 +34,6 @@ class PostSignatureRequestsSignatureRequestIdActivate extends Request implements
 	 */
 	public function __construct(
 		protected string $signatureRequestId,
-        array $body = []
 	) {
-        $this->body = new JsonBodyRepository($body);
 	}
 }
