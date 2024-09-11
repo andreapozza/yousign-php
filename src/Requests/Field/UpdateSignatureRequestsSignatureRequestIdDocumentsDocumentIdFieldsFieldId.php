@@ -3,10 +3,11 @@
 namespace Andreapozza\YouSign\Requests\Field;
 
 use DateTime;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * update-signature_requests-signatureRequestId-documents-documentId-fields-fieldId
@@ -35,6 +36,8 @@ class UpdateSignatureRequestsSignatureRequestIdDocumentsDocumentIdFieldsFieldId 
 		protected string $signatureRequestId,
 		protected string $documentId,
 		protected string $fieldId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

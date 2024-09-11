@@ -3,10 +3,11 @@
 namespace Andreapozza\YouSign\Requests\Follower;
 
 use DateTime;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * post-signature_requests-signatureRequestId-followers
@@ -31,6 +32,8 @@ class PostSignatureRequestsSignatureRequestIdFollowers extends Request implement
 	 */
 	public function __construct(
 		protected string $signatureRequestId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

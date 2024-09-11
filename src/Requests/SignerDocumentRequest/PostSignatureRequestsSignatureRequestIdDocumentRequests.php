@@ -3,10 +3,11 @@
 namespace Andreapozza\YouSign\Requests\SignerDocumentRequest;
 
 use DateTime;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * post-signature_requests-signatureRequestId-document_requests
@@ -31,6 +32,8 @@ class PostSignatureRequestsSignatureRequestIdDocumentRequests extends Request im
 	 */
 	public function __construct(
 		protected string $signatureRequestId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

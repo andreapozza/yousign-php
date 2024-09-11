@@ -6,6 +6,7 @@ use DateTime;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Repositories\Body\JsonBodyRepository;
 use Saloon\Traits\Body\HasJsonBody;
 
 /**
@@ -32,6 +33,8 @@ class PatchCustomExperiencesCustomExperienceId extends Request implements HasBod
 	 */
 	public function __construct(
 		protected string $customExperienceId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

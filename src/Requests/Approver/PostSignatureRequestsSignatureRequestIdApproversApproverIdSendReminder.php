@@ -6,6 +6,7 @@ use DateTime;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Repositories\Body\JsonBodyRepository;
 use Saloon\Traits\Body\HasJsonBody;
 
 /**
@@ -35,6 +36,8 @@ class PostSignatureRequestsSignatureRequestIdApproversApproverIdSendReminder ext
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $approverId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

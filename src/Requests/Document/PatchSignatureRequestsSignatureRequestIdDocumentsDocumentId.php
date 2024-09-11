@@ -6,6 +6,7 @@ use DateTime;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Repositories\Body\JsonBodyRepository;
 use Saloon\Traits\Body\HasJsonBody;
 
 /**
@@ -33,6 +34,8 @@ class PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId extends Reques
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $documentId,
-	) {
-	}
+        array $body = []
+    ) {
+        $this->body = new JsonBodyRepository($body);
+    }
 }

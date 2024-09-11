@@ -3,10 +3,11 @@
 namespace Andreapozza\YouSign\Requests\Signer;
 
 use DateTime;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * patch-signature_requests-signatureRequestId-signers-signerId
@@ -34,6 +35,8 @@ class PatchSignatureRequestsSignatureRequestIdSignersSignerId extends Request im
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $signerId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }

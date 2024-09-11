@@ -3,10 +3,11 @@
 namespace Andreapozza\YouSign\Requests\Webhook;
 
 use DateTime;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Repositories\Body\JsonBodyRepository;
 
 /**
  * patch-webhooks-webhookId
@@ -32,6 +33,8 @@ class PatchWebhooksWebhookId extends Request implements HasBody
 	 */
 	public function __construct(
 		protected string $webhookId,
+        array $body = []
 	) {
+        $this->body = new JsonBodyRepository($body);
 	}
 }
