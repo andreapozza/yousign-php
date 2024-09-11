@@ -1,0 +1,22 @@
+{
+    "name": "andreapozza/yousign-php",
+    "description": "YouSign php connector",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Andreapozza\\YouSign\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrea Pozza",
+            "email": "andrea.pozza@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "saloonphp/saloon": "^3.0",
+        "saloonphp/pagination-plugin": "^2.0",
+        "saloonphp/rate-limit-plugin": "^2.0"
+    }
+}
