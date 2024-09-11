@@ -17,34 +17,36 @@ class Workspace extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getWorkspaces(?int $limit): Response
+	public function list(?int $limit): Response
 	{
 		return $this->connector->send(new GetWorkspaces($limit));
 	}
 
 
-	public function postWorkspace(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostWorkspace());
+		return $this->connector->send(new PostWorkspace($data));
 	}
 
 
-	public function getWorkspacesDefault(): Response
+	public function getDefault(): Response
 	{
 		return $this->connector->send(new GetWorkspacesDefault());
 	}
 
 
-	public function markWorkspaceAsDefault(): Response
+	public function markAsDefault(string $workspaceId): Response
 	{
-		return $this->connector->send(new MarkWorkspaceAsDefault());
+		return $this->connector->send(new MarkWorkspaceAsDefault([
+            'workspace_id' => $workspaceId
+        ]));
 	}
 
 
 	/**
 	 * @param string $workspaceId Workspace Id
 	 */
-	public function getWorkspacesWorkspaceId(string $workspaceId): Response
+	public function get(string $workspaceId): Response
 	{
 		return $this->connector->send(new GetWorkspacesWorkspaceId($workspaceId));
 	}
@@ -53,7 +55,7 @@ class Workspace extends Resource
 	/**
 	 * @param string $workspaceId Workspace Id
 	 */
-	public function deleteWorkspace(string $workspaceId): Response
+	public function delete(string $workspaceId): Response
 	{
 		return $this->connector->send(new DeleteWorkspace($workspaceId));
 	}
@@ -62,8 +64,8 @@ class Workspace extends Resource
 	/**
 	 * @param string $workspaceId Workspace Id
 	 */
-	public function patchWorkspacesWorkspaceId(string $workspaceId): Response
+	public function update(string $workspaceId, array $data): Response
 	{
-		return $this->connector->send(new PatchWorkspacesWorkspaceId($workspaceId));
+		return $this->connector->send(new PatchWorkspacesWorkspaceId($workspaceId, $data));
 	}
 }

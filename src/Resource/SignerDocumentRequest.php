@@ -17,9 +17,9 @@ class SignerDocumentRequest extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdDocumentRequests(string $signatureRequestId): Response
+	public function add(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentRequests($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentRequests($signatureRequestId, $data));
 	}
 
 
@@ -27,7 +27,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentRequestId Signer Document Request Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdDocumentRequestsDocumentRequestId(
+	public function delete(
 		string $signatureRequestId,
 		string $documentRequestId,
 	): Response
@@ -41,7 +41,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $documentRequestId Signer Document Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function putSignatureRequestsSignatureRequestIdDocumentRequestsDocumentRequestIdSignersSignerId(
+	public function addSigner(
 		string $signatureRequestId,
 		string $documentRequestId,
 		string $signerId,
@@ -56,7 +56,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $documentRequestId Signer Document Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdDocumentRequestsDocumentRequestIdSignersSignerId(
+	public function removeSigner(
 		string $signatureRequestId,
 		string $documentRequestId,
 		string $signerId,
@@ -70,7 +70,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdSignersSignerIdDocuments(
+	public function listDocuments(
 		string $signatureRequestId,
 		string $signerId,
 	): Response
@@ -83,7 +83,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdSignersSignerIdDocuments(
+	public function deleteDocuments(
 		string $signatureRequestId,
 		string $signerId,
 	): Response
@@ -97,7 +97,7 @@ class SignerDocumentRequest extends Resource
 	 * @param string $signerId Signer Id
 	 * @param string $signerDocumentId Signer Document Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdSignersSignerIdDocumentsSignerDocumentId(
+	public function downloadDocument(
 		string $signatureRequestId,
 		string $signerId,
 		string $signerDocumentId,

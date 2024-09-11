@@ -17,7 +17,7 @@ class Field extends Resource
 	 * @param array $types Filter by Field type.
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getSignatureRequestsSignatureRequestIdDocumentsDocumentIdFields(
+	public function list(
 		string $signatureRequestId,
 		string $documentId,
 		?array $types,
@@ -32,12 +32,13 @@ class Field extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document ID
 	 */
-	public function postSignatureRequestsSignatureRequestIdDocumentsDocumentIdFields(
+	public function create(
 		string $signatureRequestId,
 		string $documentId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdFields($signatureRequestId, $documentId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdFields($signatureRequestId, $documentId, $data));
 	}
 
 
@@ -46,7 +47,7 @@ class Field extends Resource
 	 * @param string $documentId Document Id
 	 * @param string $fieldId Field Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdDocumentsDocumentIdFieldsFieldId(
+	public function delete(
 		string $signatureRequestId,
 		string $documentId,
 		string $fieldId,
@@ -61,12 +62,13 @@ class Field extends Resource
 	 * @param string $documentId Document Id
 	 * @param string $fieldId Field Id
 	 */
-	public function updateSignatureRequestsSignatureRequestIdDocumentsDocumentIdFieldsFieldId(
+	public function update(
 		string $signatureRequestId,
 		string $documentId,
 		string $fieldId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new UpdateSignatureRequestsSignatureRequestIdDocumentsDocumentIdFieldsFieldId($signatureRequestId, $documentId, $fieldId));
+		return $this->connector->send(new UpdateSignatureRequestsSignatureRequestIdDocumentsDocumentIdFieldsFieldId($signatureRequestId, $documentId, $fieldId, $data));
 	}
 }

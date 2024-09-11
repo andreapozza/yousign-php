@@ -17,22 +17,22 @@ class CustomExperience extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getCustomExperiences(?int $limit): Response
+	public function list(?int $limit): Response
 	{
 		return $this->connector->send(new GetCustomExperiences($limit));
 	}
 
 
-	public function postCustomExperience(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostCustomExperience());
+		return $this->connector->send(new PostCustomExperience($data));
 	}
 
 
 	/**
 	 * @param string $customExperienceId Custom Experience Id
 	 */
-	public function getCustomExperiencesCustomExperienceId(string $customExperienceId): Response
+	public function get(string $customExperienceId): Response
 	{
 		return $this->connector->send(new GetCustomExperiencesCustomExperienceId($customExperienceId));
 	}
@@ -41,7 +41,7 @@ class CustomExperience extends Resource
 	/**
 	 * @param string $customExperienceId Custom Experience Id
 	 */
-	public function deleteCustomExperience(string $customExperienceId): Response
+	public function delete(string $customExperienceId): Response
 	{
 		return $this->connector->send(new DeleteCustomExperience($customExperienceId));
 	}
@@ -50,25 +50,25 @@ class CustomExperience extends Resource
 	/**
 	 * @param string $customExperienceId Custom Experience Id
 	 */
-	public function patchCustomExperiencesCustomExperienceId(string $customExperienceId): Response
+	public function update(string $customExperienceId, array $data): Response
 	{
-		return $this->connector->send(new PatchCustomExperiencesCustomExperienceId($customExperienceId));
+		return $this->connector->send(new PatchCustomExperiencesCustomExperienceId($customExperienceId, $data));
 	}
 
 
 	/**
 	 * @param string $customExperienceId Custom Experience Id
 	 */
-	public function patchCustomExperienceLogo(string $customExperienceId): Response
+	public function updateLogo(string $customExperienceId, array $data): Response
 	{
-		return $this->connector->send(new PatchCustomExperienceLogo($customExperienceId));
+		return $this->connector->send(new PatchCustomExperienceLogo($customExperienceId, $data));
 	}
 
 
 	/**
 	 * @param string $customExperienceId Custom Experience Id
 	 */
-	public function deleteCustomExperienceLogo(string $customExperienceId): Response
+	public function deleteLogo(string $customExperienceId): Response
 	{
 		return $this->connector->send(new DeleteCustomExperienceLogo($customExperienceId));
 	}

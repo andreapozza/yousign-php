@@ -12,22 +12,22 @@ use Saloon\Http\Response;
 
 class Webhook extends Resource
 {
-	public function getWebhooks(): Response
+	public function list(): Response
 	{
 		return $this->connector->send(new GetWebhooks());
 	}
 
 
-	public function postWebhooksSubscriptions(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostWebhooksSubscriptions());
+		return $this->connector->send(new PostWebhooksSubscriptions($data));
 	}
 
 
 	/**
 	 * @param string $webhookId Webhook Id
 	 */
-	public function getWebhooksWebhookId(string $webhookId): Response
+	public function get(string $webhookId): Response
 	{
 		return $this->connector->send(new GetWebhooksWebhookId($webhookId));
 	}
@@ -36,7 +36,7 @@ class Webhook extends Resource
 	/**
 	 * @param string $webhookId Webhook Id
 	 */
-	public function deleteWebhooksWebhookId(string $webhookId): Response
+	public function delete(string $webhookId): Response
 	{
 		return $this->connector->send(new DeleteWebhooksWebhookId($webhookId));
 	}
@@ -45,8 +45,8 @@ class Webhook extends Resource
 	/**
 	 * @param string $webhookId Webhook Id
 	 */
-	public function patchWebhooksWebhookId(string $webhookId): Response
+	public function update(string $webhookId, array $data): Response
 	{
-		return $this->connector->send(new PatchWebhooksWebhookId($webhookId));
+		return $this->connector->send(new PatchWebhooksWebhookId($webhookId, $data));
 	}
 }

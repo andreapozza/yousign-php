@@ -8,7 +8,6 @@ use Andreapozza\YouSign\Requests\Document\GetSignatureRequestsSignatureRequestId
 use Andreapozza\YouSign\Requests\Document\GetSignatureRequestsSignatureRequestIdDocumentsDocumentsIdDownload;
 use Andreapozza\YouSign\Requests\Document\GetSignatureRequestsSignatureRequestIdDocumentsDownload;
 use Andreapozza\YouSign\Requests\Document\PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId;
-use Andreapozza\YouSign\Requests\Document\PostDocuments;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocuments;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace;
 use Andreapozza\YouSign\Resource;
@@ -16,17 +15,11 @@ use Saloon\Http\Response;
 
 class Document extends Resource
 {
-	public function postDocuments(): Response
-	{
-		return $this->connector->send(new PostDocuments());
-	}
-
-
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $nature Filter by nature
 	 */
-	public function getSignatureRequestsSignatureRequestIdDocuments(
+	public function list(
 		string $signatureRequestId,
 		?string $nature,
 	): Response
@@ -38,9 +31,9 @@ class Document extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdDocuments(string $signatureRequestId): Response
+	public function create(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocuments($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocuments($signatureRequestId, $data));
 	}
 
 
@@ -49,7 +42,7 @@ class Document extends Resource
 	 * @param string $version Specify Documents version to download, `completed` is only available when the Signature Request status is `done`.
 	 * @param bool $archive Force zip archive download
 	 */
-	public function getSignatureRequestsSignatureRequestIdDocumentsDownload(
+	public function downloadAll(
 		string $signatureRequestId,
 		?string $version,
 		?bool $archive,
@@ -63,7 +56,7 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdDocumentsDocumentId(
+	public function get(
 		string $signatureRequestId,
 		string $documentId,
 	): Response
@@ -76,7 +69,7 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdDocumentsDocumentId(
+	public function delete(
 		string $signatureRequestId,
 		string $documentId,
 	): Response
@@ -89,12 +82,13 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document Id
 	 */
-	public function patchSignatureRequestsSignatureRequestIdDocumentsDocumentId(
+	public function update(
 		string $signatureRequestId,
 		string $documentId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId($signatureRequestId, $documentId));
+		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId($signatureRequestId, $documentId, $data));
 	}
 
 
@@ -102,7 +96,7 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdDocumentsDocumentsIdDownload(
+	public function download(
 		string $signatureRequestId,
 		string $documentId,
 	): Response
@@ -115,11 +109,12 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $documentId Document Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace(
+	public function replace(
 		string $signatureRequestId,
 		string $documentId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace($signatureRequestId, $documentId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace($signatureRequestId, $documentId, $data));
 	}
 }

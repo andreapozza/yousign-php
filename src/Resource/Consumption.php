@@ -14,7 +14,7 @@ class Consumption extends Resource
 	 * @param string $to The "to" date must be more recent than the "from" date
 	 * @param string $authenticationKey
 	 */
-	public function getConsumptions(string $from, string $to, ?string $authenticationKey): Response
+	public function list(string $from, string $to, ?string $authenticationKey): Response
 	{
 		return $this->connector->send(new GetConsumptions($from, $to, $authenticationKey));
 	}
@@ -25,7 +25,7 @@ class Consumption extends Resource
 	 * @param string $to The "to" date must be more recent than the "from" date
 	 * @param string $authenticationKey
 	 */
-	public function getConsumptionsExport(string $from, string $to, ?string $authenticationKey): Response
+	public function getExport(string $from, string $to, ?string $authenticationKey): Response
 	{
 		return $this->connector->send(new GetConsumptionsExport($from, $to, $authenticationKey));
 	}

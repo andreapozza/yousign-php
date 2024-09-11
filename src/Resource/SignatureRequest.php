@@ -34,9 +34,9 @@ class SignatureRequest extends Resource
 	}
 
 
-	public function create(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequests());
+		return $this->connector->send(new PostSignatureRequests($data));
 	}
 
 
@@ -65,9 +65,9 @@ class SignatureRequest extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function patch(string $signatureRequestId): Response
+	public function update(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PatchSignatureRequestsSignatureRequestId($signatureRequestId));
+		return $this->connector->send(new PatchSignatureRequestsSignatureRequestId($signatureRequestId, $data));
 	}
 
 
@@ -83,17 +83,17 @@ class SignatureRequest extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function cancel(string $signatureRequestId): Response
+	public function cancel(string $signatureRequestId, array $body): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdCancel($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdCancel($signatureRequestId, $body));
 	}
 
 
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function reactivate(string $signatureRequestId): Response
+	public function reactivate(string $signatureRequestId, array $body): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdReactivate($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdReactivate($signatureRequestId, $body));
 	}
 }

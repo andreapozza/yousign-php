@@ -14,7 +14,7 @@ class Metadata extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdMetadata(string $signatureRequestId): Response
+	public function get(string $signatureRequestId): Response
 	{
 		return $this->connector->send(new GetSignatureRequestsSignatureRequestIdMetadata($signatureRequestId));
 	}
@@ -23,25 +23,25 @@ class Metadata extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function putSignatureRequestsSignatureRequestIdMetadata(string $signatureRequestId): Response
+	public function update(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PutSignatureRequestsSignatureRequestIdMetadata($signatureRequestId));
+		return $this->connector->send(new PutSignatureRequestsSignatureRequestIdMetadata($signatureRequestId, $data));
 	}
 
 
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdMetadata(string $signatureRequestId): Response
+	public function attach(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdMetadata($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdMetadata($signatureRequestId, $data));
 	}
 
 
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdMetadata(string $signatureRequestId): Response
+	public function delete(string $signatureRequestId): Response
 	{
 		return $this->connector->send(new DeleteSignatureRequestsSignatureRequestIdMetadata($signatureRequestId));
 	}

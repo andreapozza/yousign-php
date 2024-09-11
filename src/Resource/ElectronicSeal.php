@@ -17,16 +17,16 @@ use Saloon\Http\Response;
 
 class ElectronicSeal extends Resource
 {
-	public function uploadElectronicSealDocument(): Response
+	public function createDocument(array $data): Response
 	{
-		return $this->connector->send(new UploadElectronicSealDocument());
+		return $this->connector->send(new UploadElectronicSealDocument($data));
 	}
 
 
 	/**
 	 * @param string $electronicSealDocumentId
 	 */
-	public function downloadElectronicSealDocument(string $electronicSealDocumentId): Response
+	public function downloadDocument(string $electronicSealDocumentId): Response
 	{
 		return $this->connector->send(new DownloadElectronicSealDocument($electronicSealDocumentId));
 	}
@@ -35,22 +35,22 @@ class ElectronicSeal extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function listElectronicSealImages(?int $limit): Response
+	public function listImages(?int $limit): Response
 	{
 		return $this->connector->send(new ListElectronicSealImages($limit));
 	}
 
 
-	public function uploadElectronicSealImage(): Response
+	public function createImage(array $data): Response
 	{
-		return $this->connector->send(new UploadElectronicSealImage());
+		return $this->connector->send(new UploadElectronicSealImage($data));
 	}
 
 
 	/**
 	 * @param string $electronicSealImageId
 	 */
-	public function deleteElectronicSealImage(string $electronicSealImageId): Response
+	public function deleteImage(string $electronicSealImageId): Response
 	{
 		return $this->connector->send(new DeleteElectronicSealImage($electronicSealImageId));
 	}
@@ -59,22 +59,22 @@ class ElectronicSeal extends Resource
 	/**
 	 * @param string $electronicSealImageId
 	 */
-	public function downloadElectronicSealImage(string $electronicSealImageId): Response
+	public function downloadImage(string $electronicSealImageId): Response
 	{
 		return $this->connector->send(new DownloadElectronicSealImage($electronicSealImageId));
 	}
 
 
-	public function postElectronicSeals(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostElectronicSeals());
+		return $this->connector->send(new PostElectronicSeals($data));
 	}
 
 
 	/**
 	 * @param string $electronicSealId
 	 */
-	public function getElectronicSeal(string $electronicSealId): Response
+	public function get(string $electronicSealId): Response
 	{
 		return $this->connector->send(new GetElectronicSeal($electronicSealId));
 	}
@@ -83,7 +83,7 @@ class ElectronicSeal extends Resource
 	/**
 	 * @param string $electronicSealId
 	 */
-	public function getElectronicSealAuditTrail(string $electronicSealId): Response
+	public function getAuditTrail(string $electronicSealId): Response
 	{
 		return $this->connector->send(new GetElectronicSealAuditTrail($electronicSealId));
 	}
@@ -92,7 +92,7 @@ class ElectronicSeal extends Resource
 	/**
 	 * @param string $electronicSealId
 	 */
-	public function downloadElectronicSealAuditTrail(string $electronicSealId): Response
+	public function downloadAuditTrail(string $electronicSealId): Response
 	{
 		return $this->connector->send(new DownloadElectronicSealAuditTrail($electronicSealId));
 	}

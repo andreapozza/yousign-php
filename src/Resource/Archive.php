@@ -9,9 +9,9 @@ use Saloon\Http\Response;
 
 class Archive extends Resource
 {
-	public function postArchives(): Response
+	public function postArchives(array $data): Response
 	{
-		return $this->connector->send(new PostArchives());
+		return $this->connector->send(new PostArchives($data));
 	}
 
 

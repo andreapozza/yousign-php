@@ -15,9 +15,9 @@ class Approver extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdApprovers(string $signatureRequestId): Response
+	public function create(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdApprovers($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdApprovers($signatureRequestId, $data));
 	}
 
 
@@ -25,7 +25,7 @@ class Approver extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $approverId Approver Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdApproversApproverId(
+	public function get(
 		string $signatureRequestId,
 		string $approverId,
 	): Response
@@ -38,7 +38,7 @@ class Approver extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $approverId Approver Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdApproversApproverId(
+	public function delete(
 		string $signatureRequestId,
 		string $approverId,
 	): Response
@@ -51,12 +51,13 @@ class Approver extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $approverId Approver Id
 	 */
-	public function patchSignatureRequestsSignatureRequestIdApproversApproverId(
+	public function update(
 		string $signatureRequestId,
 		string $approverId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdApproversApproverId($signatureRequestId, $approverId));
+		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdApproversApproverId($signatureRequestId, $approverId, $data));
 	}
 
 
@@ -64,11 +65,12 @@ class Approver extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $approverId Approver Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdApproversApproverIdSendReminder(
+	public function sendReminder(
 		string $signatureRequestId,
 		string $approverId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdApproversApproverIdSendReminder($signatureRequestId, $approverId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdApproversApproverIdSendReminder($signatureRequestId, $approverId, $data));
 	}
 }

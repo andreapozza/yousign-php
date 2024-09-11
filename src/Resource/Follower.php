@@ -12,7 +12,7 @@ class Follower extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdFollowers(string $signatureRequestId): Response
+	public function list(string $signatureRequestId): Response
 	{
 		return $this->connector->send(new GetSignatureRequestsSignatureRequestIdFollowers($signatureRequestId));
 	}
@@ -21,8 +21,8 @@ class Follower extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdFollowers(string $signatureRequestId): Response
+	public function create(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdFollowers($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdFollowers($signatureRequestId, $data));
 	}
 }

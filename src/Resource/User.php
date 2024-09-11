@@ -13,7 +13,7 @@ class User extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getUsers(?int $limit): Response
+	public function list(?int $limit): Response
 	{
 		return $this->connector->send(new GetUsers($limit));
 	}
@@ -23,7 +23,7 @@ class User extends Resource
 	 * @param string $workspaceId Workspace Id
 	 * @param string $userId User Id
 	 */
-	public function putWorkspacesWorkspaceIdUsers(string $workspaceId, string $userId): Response
+	public function associateUserToWorkspace(string $workspaceId, string $userId): Response
 	{
 		return $this->connector->send(new PutWorkspacesWorkspaceIdUsers($workspaceId, $userId));
 	}
@@ -33,7 +33,7 @@ class User extends Resource
 	 * @param string $workspaceId Workspace Id
 	 * @param string $userId User Id
 	 */
-	public function deleteWorkspaceWorkspaceIdUsersUserId(string $workspaceId, string $userId): Response
+	public function removeUserFromWorkspace(string $workspaceId, string $userId): Response
 	{
 		return $this->connector->send(new DeleteWorkspaceWorkspaceIdUsersUserId($workspaceId, $userId));
 	}

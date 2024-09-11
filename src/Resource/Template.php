@@ -11,7 +11,7 @@ class Template extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getTemplates(?int $limit): Response
+	public function list(?int $limit): Response
 	{
 		return $this->connector->send(new GetTemplates($limit));
 	}

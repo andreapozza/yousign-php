@@ -18,7 +18,7 @@ class Signer extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function getSignatureRequestsSignatureRequestIdSigners(string $signatureRequestId): Response
+	public function list(string $signatureRequestId): Response
 	{
 		return $this->connector->send(new GetSignatureRequestsSignatureRequestIdSigners($signatureRequestId));
 	}
@@ -27,9 +27,9 @@ class Signer extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdSigners(string $signatureRequestId): Response
+	public function create(string $signatureRequestId, array $data): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdSigners($signatureRequestId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdSigners($signatureRequestId, $data));
 	}
 
 
@@ -37,7 +37,7 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function getSignersSignersId(string $signatureRequestId, string $signerId): Response
+	public function get(string $signatureRequestId, string $signerId): Response
 	{
 		return $this->connector->send(new GetSignersSignersId($signatureRequestId, $signerId));
 	}
@@ -47,7 +47,7 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function deleteSignatureRequestsSignatureRequestIdSignersSignerId(
+	public function delete(
 		string $signatureRequestId,
 		string $signerId,
 	): Response
@@ -60,12 +60,13 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function patchSignatureRequestsSignatureRequestIdSignersSignerId(
+	public function update(
 		string $signatureRequestId,
 		string $signerId,
+        array $data
 	): Response
 	{
-		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdSignersSignerId($signatureRequestId, $signerId));
+		return $this->connector->send(new PatchSignatureRequestsSignatureRequestIdSignersSignerId($signatureRequestId, $signerId, $data));
 	}
 
 
@@ -73,7 +74,7 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdSignersSignerIdSendOtp(
+	public function sendOtp(
 		string $signatureRequestId,
 		string $signerId,
 	): Response
@@ -86,7 +87,7 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdSignersSignerIdSendReminder(
+	public function sendReminder(
 		string $signatureRequestId,
 		string $signerId,
 	): Response
@@ -99,11 +100,12 @@ class Signer extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $signerId Signer Id
 	 */
-	public function postSignatureRequestsSignatureRequestIdSignersSignerIdSign(
+	public function sign(
 		string $signatureRequestId,
 		string $signerId,
+        array $data,
 	): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdSignersSignerIdSign($signatureRequestId, $signerId));
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdSignersSignerIdSign($signatureRequestId, $signerId, $data));
 	}
 }

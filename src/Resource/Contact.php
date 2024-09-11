@@ -15,22 +15,22 @@ class Contact extends Resource
 	/**
 	 * @param int $limit The limit of items count to retrieve.
 	 */
-	public function getContacts(?int $limit): Response
+	public function list(?int $limit): Response
 	{
 		return $this->connector->send(new GetContacts($limit));
 	}
 
 
-	public function postContact(): Response
+	public function create(array $data): Response
 	{
-		return $this->connector->send(new PostContact());
+		return $this->connector->send(new PostContact($data));
 	}
 
 
 	/**
 	 * @param string $contactId Contact Id
 	 */
-	public function getContactsContactId(string $contactId): Response
+	public function get(string $contactId): Response
 	{
 		return $this->connector->send(new GetContactsContactId($contactId));
 	}
@@ -39,7 +39,7 @@ class Contact extends Resource
 	/**
 	 * @param string $contactId Contact Id
 	 */
-	public function deleteContactsContactId(string $contactId): Response
+	public function delete(string $contactId): Response
 	{
 		return $this->connector->send(new DeleteContactsContactId($contactId));
 	}
@@ -48,8 +48,8 @@ class Contact extends Resource
 	/**
 	 * @param string $contactId Contact Id
 	 */
-	public function patchContactsContactId(string $contactId): Response
+	public function update(string $contactId, array $data): Response
 	{
-		return $this->connector->send(new PatchContactsContactId($contactId));
+		return $this->connector->send(new PatchContactsContactId($contactId, $data));
 	}
 }
