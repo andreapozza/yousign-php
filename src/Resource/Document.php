@@ -10,6 +10,7 @@ use Andreapozza\YouSign\Requests\Document\GetSignatureRequestsSignatureRequestId
 use Andreapozza\YouSign\Requests\Document\PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocuments;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace;
+use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocumentsUpload;
 use Andreapozza\YouSign\Resource;
 use Saloon\Http\Response;
 
@@ -31,9 +32,18 @@ class Document extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function create(string $signatureRequestId, array $data): Response
+	public function add(string $signatureRequestId, array $data): Response
 	{
 		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocuments($signatureRequestId, $data));
+	}
+
+	/**
+	 * @param string $signatureRequestId Signature Request Id
+	 * @param string $filePath Path of the file to upload
+	 */
+	public function upload(string $signatureRequestId, string $filePath, array $data): Response
+	{
+		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsUpload($signatureRequestId, $filePath, $data));
 	}
 
 
