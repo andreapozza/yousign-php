@@ -35,14 +35,23 @@ class PostSignatureRequestsSignatureRequestIdDocumentsUpload extends Request imp
 	public function __construct(
 		protected string $signatureRequestId,
 		protected string $filePath,
+        protected bool $signable_document = false,
+        protected bool $parse_anchors = false,
         array $body = []
     ) {
-        $this->body = new MultipartBodyRepository([
-            new MultipartValue(name: 'contract', value: $this->filePath)
-        ]);
+        $this->body = new MultipartBodyRepository($this->defaultBody());
 
         foreach ($body as $key => $value) {
             $this->body->add($key, $value);
         }
+    }
+
+    protected function defaultBody(): array
+    {
+        return [
+            new MultipartValue(name: 'file', value: $this->filePath),
+            new MultipartValue(name: 'nature', value: $this->signable_document ? 'signable_document' : 'attachment'),
+            new MultipartValue(name: 'parse_anchors', value: $this->parse_anchors),
+        ];
     }
 }

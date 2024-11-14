@@ -41,9 +41,23 @@ class Document extends Resource
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $filePath Path of the file to upload
 	 */
-	public function upload(string $signatureRequestId, string $filePath, array $data): Response
+	public function upload(
+        string $signatureRequestId, 
+        string $filePath, 
+        bool $signable_document = false, 
+        bool $parse_anchors = false, 
+        array $data = []
+    ): Response
 	{
-		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocumentsUpload($signatureRequestId, $filePath, $data));
+		return $this->connector->send(
+            new PostSignatureRequestsSignatureRequestIdDocumentsUpload(
+                $signatureRequestId, 
+                $filePath, 
+                $signable_document, 
+                $parse_anchors, 
+                $data
+            )
+        );
 	}
 
 
