@@ -10,10 +10,10 @@ use Andreapozza\YouSign\Requests\Document\GetSignatureRequestsSignatureRequestId
 use Andreapozza\YouSign\Requests\Document\PatchSignatureRequestsSignatureRequestIdDocumentsDocumentId;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocuments;
 use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocumentsDocumentIdReplace;
-use Andreapozza\YouSign\Resource;
+use Andreapozza\YouSign\Requests\Document\PostSignatureRequestsSignatureRequestIdDocumentsUpload;
 use Saloon\Http\Response;
 
-class Document extends Resource
+class Document extends \Andreapozza\YouSign\Resource
 {
 	/**
 	 * @param string $signatureRequestId Signature Request Id
@@ -31,9 +31,33 @@ class Document extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 */
-	public function create(string $signatureRequestId, array $data): Response
+	public function add(string $signatureRequestId, array $data): Response
 	{
 		return $this->connector->send(new PostSignatureRequestsSignatureRequestIdDocuments($signatureRequestId, $data));
+	}
+
+	/**
+	 * @param string $signatureRequestId Signature Request Id
+	 * @param \Psr\Http\Message\StreamInterface|resource|string $file Path of the file to upload
+     * @param array<string, \Psr\Http\Message\StreamInterface|resource|string> $body
+	 */
+	public function upload(
+        string $signatureRequestId,
+        $file,
+        bool $signable_document = false,
+        bool $parse_anchors = false,
+        array $data = []
+    ): Response
+	{
+		return $this->connector->send(
+            new PostSignatureRequestsSignatureRequestIdDocumentsUpload(
+                $signatureRequestId,
+                $file,
+                $signable_document,
+                $parse_anchors,
+                $data
+            )
+        );
 	}
 
 
