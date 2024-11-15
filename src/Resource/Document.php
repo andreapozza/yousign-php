@@ -40,6 +40,7 @@ class Document extends Resource
 	/**
 	 * @param string $signatureRequestId Signature Request Id
 	 * @param string $filePath Path of the file to upload
+     * @param array<string, \Psr\Http\Message\StreamInterface|resource|string> $body
 	 */
 	public function upload(
         string $signatureRequestId, 
